@@ -17,13 +17,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/data', (req, res) => {
-  const qrCodeData = req.body.QRCodeData;
+  const qrCodeData = req.body.input;
   const validQRCodeData = "04afahfakjfvizovhsoigeewpUwr326";
   
   if(qrCodeData === validQRCodeData){
     const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);//1年間有効なCookieを設定
     res.cookie("authToken", "validToken", {expires: expires});
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.redirect(path.join(__dirname, 'public', 'index.html'));
   } else {
     res.send("Invalid QR Code Data");
   }
