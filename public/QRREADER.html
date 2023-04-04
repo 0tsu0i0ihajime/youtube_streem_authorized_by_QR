@@ -50,9 +50,8 @@
         <div id="result">
             <small>※ここに読み取り結果が表示されます※</small>
         </div>
-        <form>
             <button type="button" onclick="sendData()">LogIn</button>
-        </form>
+<button type="button" onclick="switchCamera()">Switch Camera</button>
     </section>
 
     <script src="jsminQR.js"></script>
@@ -60,6 +59,28 @@
       const video = $("#camera");     // === document.querySelector("#camera");
         const canvas = $("#picture");    // === document.querySelector("#picture");
         const ctx = canvas.getContext("2d");
+const constraints = {
+  audio: false,
+  video: {
+    width: 300,
+    height: 200,
+    facingMode: "user", // フロントカメラをデフォルトに設定
+  },
+};
+
+function switchCamera() {
+  const videoSettings = video.srcObject.getVideoTracks()[0].getSettings();
+  const newFacingMode = videoSettings.facingMode === "user" ? "environment" : "user";
+  constraints.video.facingMode = newFacingMode;
+
+  navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+    // 古いストリームを停止し、新しいストリームを設定
+    video.srcObject.getTracks().forEach((track) => track.stop());
+    video.srcObject = stream;
+    video.play();
+  });
+}
+
 
         window.onload = () => {
             /** カメラ設定 */
