@@ -1,0 +1,15 @@
+{
+  "name": "youtube_streem_authorized_by_QR",
+  "varsion": "1.0.0",
+  "description": "input URL for streeming From Youtube",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "ytdl-core": "^4.8.2"
+  }
+}
