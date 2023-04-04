@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'QRReader-min.html'));
+  res.sendFile(path.join(__dirname, 'public', 'QRREADER.html'));
 });
 
 app.post('/data', (req, res) => {
